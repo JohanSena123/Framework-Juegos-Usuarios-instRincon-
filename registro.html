@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Registro</h1>
+    <form id="form-registro">
+      <input type="text" id="usuario" placeholder="Usuario" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <button type="submit">Registrarse</button>
+    </form>
+    <p>Si ya te registraste da click aqui <a href="index.html">Inicia sesion</a></p>
+    <p id="mensaje-registro"></p>
+  </div>
+  <script>
+    const formRegistro = document.getElementById('form-registro');
+    const mensajeRegistro = document.getElementById('mensaje-registro');
+
+    formRegistro.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const usuario = document.getElementById('usuario').value;
+      const password = document.getElementById('password').value;
+
+      if (usuario && password) {
+        localStorage.setItem('usuario', usuario);
+        localStorage.setItem('password', password);
+        mensajeRegistro.textContent = 'Felicidades te registraste de manera exitosa';
+        mensajeRegistro.style.color = 'green';
+        formRegistro.reset();
+      } else {
+        mensajeRegistro.textContent = 'Por llena todos los campos';
+        mensajeRegistro.style.color = 'red';
+      }
+    });
+  </script>
+</body>
+</html>
